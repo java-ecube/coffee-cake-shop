@@ -1,30 +1,41 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <v-app>
+    <v-app-bar color="brown">
+      Coffee Shop
+      <v-spacer></v-spacer>
+      <v-badge location="top right" color="secondary" @click="goOrderedPage()" :content="GET_ORDER_COFFEE_SIZE">
+        <v-icon icon="mdi-cart"></v-icon>
+      </v-badge>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </v-app-bar>
+    <NavigationDrawerView/>
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import NavigationDrawerView from '@/components/NavigationDrawerView.vue';
+import { mapGetters } from 'vuex';
+export default {
 
-nav {
-  padding: 30px;
-}
+  name: 'App',
+    components: {
+    NavigationDrawerView
+  
+  },
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  data: () => ({
+    //
+  }),
+  computed:{
+    ...mapGetters(['GET_ORDER_COFFEE_SIZE'])
+  },
+  methods:{
+    goOrderedPage(){
+      this.$router.push("/order")
+    }
+  }
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
