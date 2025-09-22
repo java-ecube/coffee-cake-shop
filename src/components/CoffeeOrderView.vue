@@ -97,7 +97,7 @@ export default {
     OrderItem(item){
       console.log("ordered item", item)
       item.ordered=!item.ordered
-      this.$store.dispatch('ACT_ORDER_COFFEE',item)
+      this.$store.dispatch('ACT_ORDER_COFFEE',item)//action
     },
     goOrderedPage(){
       this.$router.push('/order')

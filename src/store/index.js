@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     orderedcoffee:[],
+    total:0
     
   },
   getters: {
@@ -11,6 +12,11 @@ export default createStore({
     },
     GET_ORDER_COFFEE_SIZE(state){
       return state.orderedcoffee.length
+    },
+    GET_TOTAL_PRICE(state){
+      state.total=  state.orderedcoffee.reduce((total, item)=> total+=item.qty*item.price)
+      console.log(state.total)
+      return state.total
     }
   },
   mutations: {
